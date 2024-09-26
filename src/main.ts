@@ -3,6 +3,7 @@ import { BloomEffect, EffectComposer, EffectPass, RenderPass } from "postprocess
 import { OrbitControls } from "three/addons";
 import Hanabi from "./Hanabi";
 import Stats from "stats.js";
+import * as utils from "./utils";
 import "./style.css";
 
 const gl = new WebGLRenderer({
@@ -34,7 +35,7 @@ composer.addPass(
 
 // 烟花
 const hanabiGroup = new Array<Hanabi>();
-for (let i = 0; i < 1; i++) {
+for (let i = 0; i < utils.hanabiCount; i++) {
     setTimeout(() => {
         const hanabi = new Hanabi();
         hanabi.position.randomDirection().multiplyScalar(Math.random() * 3);

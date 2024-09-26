@@ -8,4 +8,5 @@ export default defineConfig({
         port: 4869,
     },
     plugins: [glsl()],
+    base: "./",
 });

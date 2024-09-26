@@ -1,5 +1,7 @@
 import { Color, IcosahedronGeometry, Vector3 } from "three";
 
+export const hanabiCount = 5;
+
 export const shooTrailCount = 150;
 export const shooTrailDelay = 0.5;
 export const shooDuration = 1;
