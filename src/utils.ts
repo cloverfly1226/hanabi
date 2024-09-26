@@ -1,4 +1,4 @@
-import { BufferGeometry, Float32BufferAttribute, Uint16BufferAttribute } from "three";
+import { BufferGeometry, DataTexture, Float32BufferAttribute, Uint16BufferAttribute, Vector3 } from "three";
 
 const createGeometry = (vertexCount: number) => {
     const positions = new Float32Array(vertexCount * 3);
@@ -25,10 +25,17 @@ const createGeometry = (vertexCount: number) => {
 };
 
 const param = {
-    trailCount: 30,
+    // trailCount: 10, //30,
+    // sparkDetail: 1, //5,
+    trailCount: 50,
     sparkDetail: 5,
     count: 0,
     size: 0,
+    baseVelocityTexture: <DataTexture | null>null,
+    velocityTexture: <DataTexture | null>null,
+    positionTexture: <DataTexture | null>null,
+    shooVelocity: new Vector3(0, 5, 0),
+    acceleration: new Vector3(0, -5, 0),
 };
 
 export { createGeometry, param };

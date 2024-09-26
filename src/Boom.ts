@@ -22,4 +22,8 @@ export default class Boom extends Group {
     private gpgpu: GPUComputationRenderer;
 
     private points: Points;
+
+    update(delta: number) {}
+
+    resize(width: number, height: number) {}
 }

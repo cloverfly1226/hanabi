@@ -47,22 +47,36 @@ export default class Hanabi extends Group {
             }
         }
 
-        console.log(positions.array);
-        console.log(imageData);
+        utils.param.baseVelocityTexture = baseVelocityTexture;
+
+        this.add((this.shoo = new Shoo(gpgpu)));
+        this.add((this.boom = new Boom(gpgpu)));
 
         gpgpu.init();
-        this.gpgpu = gpgpu;
 
-        // this.shoo = new Shoo(this.gpgpu);
-        // this.boom = new Boom(this.gpgpu);
-
+        this.shoo.debug();
         // velocity debug
         const debugPanel = new Mesh(new PlaneGeometry(2, 2), new MeshBasicMaterial({ map: baseVelocityTexture, side: DoubleSide }));
+        debugPanel.position.set(0, 0, -5);
         this.add(debugPanel);
+
+        this.gpgpu = gpgpu;
     }
 
-    // private shoo: Shoo;
-    // private boom: Boom;
+    private shoo: Shoo;
+    private boom: Boom;
 
     private gpgpu: GPUComputationRenderer;
+
+    update(delta: number) {
+        const { gpgpu } = this;
+        this.shoo.update(delta);
+        this.boom.update(delta);
+        gpgpu.compute();
+    }
+
+    resize(width: number, height: number) {
+        this.shoo.resize(width, height);
+        this.boom.resize(width, height);
+    }
 }
