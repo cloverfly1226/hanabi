@@ -1,41 +1,19 @@
-import { BufferGeometry, DataTexture, Float32BufferAttribute, Uint16BufferAttribute, Vector3 } from "three";
+import { IcosahedronGeometry, Vector3 } from "three";
 
-const createGeometry = (vertexCount: number) => {
-    const positions = new Float32Array(vertexCount * 3);
-    // const colors = new Float32Array(vertexCount * 3);
-    const indices = new Uint16Array(vertexCount);
-    for (let i = 0; i < vertexCount; i++) {
-        positions[i * 3] = 0;
-        positions[i * 3 + 1] = 0;
-        positions[i * 3 + 2] = 0;
+export const shooTrailCount = 50;
+export const shooTrailDelay = 0.5;
+export const shooDuration = 1;
+export const shooDelay = 0.5;
+export const shooVelocity = new Vector3(0, 5, 0);
+export const shooAcceleration = new Vector3(0, -5, 0);
 
-        // colors[i * 3] = 0;
-        // colors[i * 3 + 1] = 0;
-        // colors[i * 3 + 2] = 0;
+export const icosahedron = new IcosahedronGeometry(5, 2);
 
-        indices[i] = i;
-    }
+export const boomTrailCount = 50;
+export const boomTrailDelay = 0.5;
+export const boomDuration = 1;
+export const boomDelay = 0;
+export const boomPosition = new Vector3(0, 2.5, 0);
+export const boomAcceleration = new Vector3(0, -3, 0);
 
-    const geometry = new BufferGeometry();
-    geometry.setAttribute("position", new Float32BufferAttribute(positions, 3));
-    // geometry.setAttribute("color", new Float32BufferAttribute(colors, 3));
-    geometry.setAttribute("index", new Uint16BufferAttribute(indices, 1));
-
-    return geometry;
-};
-
-const param = {
-    // trailCount: 10, //30,
-    // sparkDetail: 1, //5,
-    trailCount: 50,
-    sparkDetail: 5,
-    count: 0,
-    size: 0,
-    baseVelocityTexture: <DataTexture | null>null,
-    velocityTexture: <DataTexture | null>null,
-    positionTexture: <DataTexture | null>null,
-    shooVelocity: new Vector3(0, 5, 0),
-    acceleration: new Vector3(0, -5, 0),
-};
-
-export { createGeometry, param };
+export const loopDuration = 6;
