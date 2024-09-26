@@ -25,7 +25,7 @@ composer.addPass(
         camera,
         new BloomEffect({
             mipmapBlur: true,
-            intensity: 0.8,
+            intensity: 0.6,
             levels: 5,
             luminanceThreshold: 0,
             radius: 0.5,
@@ -35,7 +35,7 @@ composer.addPass(
 
 // 烟花
 const hanabiGroup = new Array<Hanabi>();
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 1; i++) {
     setTimeout(() => {
         const hanabi = new Hanabi();
         hanabi.position.randomDirection().multiplyScalar(Math.random() * 3);

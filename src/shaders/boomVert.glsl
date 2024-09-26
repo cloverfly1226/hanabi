@@ -18,9 +18,9 @@ varying float v_strength;
 varying float v_time;
 varying float v_duration;
 
-void main () {
+void main() {
     float delay = a_idx / u_trailCount * u_trailDelay;
-    float time = clamp (u_time - delay - u_delay - a_delay, 0., a_duration);
+    float time = clamp(u_time - delay - u_delay - a_delay, 0., a_duration);
 
     v_strength = (1. - a_idx / u_trailCount);
     v_time = time;
@@ -28,10 +28,10 @@ void main () {
 
     vec3 velocity = a_velocity * a_speedRate + a_direction;
     vec3 p = position + (velocity + u_acceleration * time / 2.) * time;
-    vec4 modelPosition = modelMatrix * vec4 (p, 1.0);
+    vec4 modelPosition = modelMatrix * vec4(p, 1.0);
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;
 
-    gl_PointSize = 5.;
+    gl_PointSize = 3.;
     gl_Position = projectedPosition;
 }
