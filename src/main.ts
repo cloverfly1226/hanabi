@@ -1,8 +1,9 @@
-import { Clock, Color, PerspectiveCamera, Scene, WebGLRenderer } from "three";
+import { Clock, PerspectiveCamera, Scene, WebGLRenderer } from "three";
 import "./style.css";
 import Hanabi from "./Hanabi";
 import { OrbitControls } from "three/addons";
 import { BloomEffect, EffectComposer, EffectPass, RenderPass } from "postprocessing";
+import Stats from "stats.js";
 
 const gl = new WebGLRenderer({
     antialias: true,
@@ -27,14 +28,25 @@ composer.addPass(
             intensity: 0.8,
             levels: 5,
             luminanceThreshold: 0,
-            radius: 1,
+            radius: 0.5,
         })
     )
 );
 
 // 烟花
-const hanabi = new Hanabi(gl);
-scene.add(hanabi);
+const hanabiGroup = new Array<Hanabi>();
+for (let i = 0; i < 10; i++) {
+    setTimeout(() => {
+        const hanabi = new Hanabi();
+        hanabi.position.randomDirection().multiplyScalar(Math.random() * 3);
+        scene.add(hanabi);
+        hanabiGroup.push(hanabi);
+    }, Math.random() * 2000);
+}
+
+const stats = new Stats();
+document.body.appendChild(stats.dom);
+stats.showPanel(0);
 
 // 计时器
 const clock = new Clock();
@@ -46,7 +58,6 @@ const resizeF = () => {
     camera.updateProjectionMatrix();
     gl.setSize(w, h);
     composer.setSize(w, h);
-    hanabi.resize(w, h);
 };
 resizeF();
 
@@ -56,10 +67,14 @@ const renderF = () => {
     const delta = clock.getDelta();
 
     orbitControl.update(delta);
-    hanabi.update(delta);
 
-    // gl.render(scene, camera);
+    hanabiGroup.forEach(hanabi => {
+        hanabi.update(delta);
+    });
+
     composer.render();
+
+    stats.update();
 };
 
 gl.setAnimationLoop(renderF);

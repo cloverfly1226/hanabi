@@ -17,6 +17,7 @@
   "dependencies": {
     "gsap": "^3.12.5",
     "postprocessing": "^6.36.2",
+    "stats.js": "^0.17.0",
     "three": "^0.166.0"
   }
 }

@@ -16,6 +16,8 @@ export default class Boom extends Group {
         const speedRate = new Float32Array(count);
         const direction = new Float32Array(count * 3);
 
+        console.log(count);
+
         let ranDelay = 0;
         let ranDuration = utils.boomDuration;
         let ranSpeedRate = 1;
@@ -76,6 +78,7 @@ export default class Boom extends Group {
         });
 
         this.points = new Points(geometry, material);
+        this.points.frustumCulled = false;
         this.add(this.points);
     }
     private points: Points<BufferGeometry, ShaderMaterial>;

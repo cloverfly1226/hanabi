@@ -40,6 +40,7 @@ export default class Shoo extends Group {
 
         const points = new Points(geometry, material);
         this.add((this.points = points));
+        points.frustumCulled = false;
     }
 
     private points: Points<BufferGeometry, ShaderMaterial>;
