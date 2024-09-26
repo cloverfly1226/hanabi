@@ -1,5 +1,6 @@
 uniform sampler2D u_shooPosition;
 varying vec2 v_particleUV;
+
 void main () {
 
     vec4 particle = texture2D (u_shooPosition, v_particleUV);
