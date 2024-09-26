@@ -1,15 +1,11 @@
-uniform float u_time;
-uniform float u_duration;
-uniform float u_delay;
-
-uniform float u_trailDelay;
-
 varying float v_strength;
-void main () {
-    float delay = (1.0 - v_strength) * u_trailDelay;
-    float time = clamp (u_time - delay - u_delay, 0., u_duration);
+varying float v_time;
+varying float v_duration;
 
-    if(time < 0.01) {
+uniform vec3 u_color;
+
+void main () {
+    if(v_time < 0.01) {
         discard;
     }
 
@@ -18,7 +14,9 @@ void main () {
         discard;
     }
 
-    gl_FragColor = vec4 (1.0, 1.0, 1.0, v_strength * (1.0 - time / u_duration));
+    float alpha = v_strength * (1. - v_time / v_duration);
+
+    gl_FragColor = vec4 (u_color * pow (v_strength * 10., 2.) / 10., alpha);
 
     #include <tonemapping_fragment>
     #include <colorspace_fragment>
