@@ -1,26 +1,35 @@
-import { PerspectiveCamera, Scene, WebGLRenderer } from "three";
+import { Color, PerspectiveCamera, Scene, WebGLRenderer } from "three";
 import "./style.css";
+import Hanabi from "./Hanabi";
+import { OrbitControls } from "three/addons";
 
-const renderer = new WebGLRenderer({
+const gl = new WebGLRenderer({
     antialias: true,
 });
-document.querySelector("#app")?.appendChild(renderer.domElement);
+document.querySelector("#app")?.appendChild(gl.domElement);
 
 const scene = new Scene();
+scene.background = new Color("gray");
 const camera = new PerspectiveCamera();
+camera.position.set(0, 0, 10);
+
+const orbitControl = new OrbitControls(camera, gl.domElement);
 
 const resizeF = () => {
     const { innerWidth: w, innerHeight: h } = window;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
-    renderer.setSize(w, h);
+    gl.setSize(w, h);
 };
 resizeF();
 
 window.addEventListener("resize", resizeF);
 
 const renderF = () => {
-    renderer.render(scene, camera);
+    gl.render(scene, camera);
 };
 
-renderer.setAnimationLoop(renderF);
+gl.setAnimationLoop(renderF);
+
+const hanabi = new Hanabi(gl);
+scene.add(hanabi);
