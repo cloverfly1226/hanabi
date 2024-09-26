@@ -1,4 +1,4 @@
-import { BufferGeometry, Color, Float32BufferAttribute, Group, Points, ShaderMaterial, Uniform, Vector3 } from "three";
+import { BufferGeometry, Float32BufferAttribute, Group, Points, ShaderMaterial, Uniform, Vector3 } from "three";
 import * as utils from "./utils";
 import boomVert from "./shaders/boomVert.glsl";
 import boomFrag from "./shaders/boomFrag.glsl";
@@ -91,6 +91,4 @@ export default class Boom extends Group {
             points.material.uniforms.u_color.value = utils.boomColors[Math.floor(Math.random() * utils.boomColors.length)];
         }
     }
-
-    resize(width: number, height: number) {}
 }

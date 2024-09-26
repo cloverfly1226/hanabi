@@ -1,4 +1,4 @@
-import { BufferGeometry, Float32BufferAttribute, Group, Points, ShaderMaterial, Uint16BufferAttribute, Uniform } from "three";
+import { BufferGeometry, Float32BufferAttribute, Group, Points, ShaderMaterial, Uniform } from "three";
 import shooVert from "./shaders/shooVert.glsl";
 import shooFrag from "./shaders/shooFrag.glsl";
 import * as utils from "./utils";
@@ -53,6 +53,4 @@ export default class Shoo extends Group {
             points.material.uniforms.u_time.value = 0;
         }
     }
-
-    resize(width: number, height: number) {}
 }

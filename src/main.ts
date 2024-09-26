@@ -1,9 +1,9 @@
 import { Clock, PerspectiveCamera, Scene, WebGLRenderer } from "three";
-import "./style.css";
-import Hanabi from "./Hanabi";
-import { OrbitControls } from "three/addons";
 import { BloomEffect, EffectComposer, EffectPass, RenderPass } from "postprocessing";
+import { OrbitControls } from "three/addons";
+import Hanabi from "./Hanabi";
 import Stats from "stats.js";
+import "./style.css";
 
 const gl = new WebGLRenderer({
     antialias: true,
@@ -12,7 +12,6 @@ const gl = new WebGLRenderer({
 document.querySelector("#app")?.appendChild(gl.domElement);
 
 const scene = new Scene();
-// scene.background = new Color("gray");
 const camera = new PerspectiveCamera();
 camera.position.set(0, 0, 10);
 

@@ -17,9 +17,4 @@ export default class Hanabi extends Group {
         this.shoo.update(delta);
         this.boom.update(delta);
     }
-
-    resize(width: number, height: number) {
-        this.shoo.resize(width, height);
-        this.boom.resize(width, height);
-    }
 }
